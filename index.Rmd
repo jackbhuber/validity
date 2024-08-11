@@ -1,0 +1,386 @@
+---
+title: "Validity Evidence for a Scale of Psychological Well-Being"
+author: Jack B. Huber, Ph.D.
+bibliography: bibliography.bib
+link-citations: yes
+---
+
+```{r global_options, include=FALSE}
+#knitr::opts_chunk$set(fig.align='center',echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+## Introduction
+
+This analysis is a validity study of a four-item scale of psychological well-being, a key outcome variable in a study I am conducting of the emotional outcomes of disaffiliation with Roman Catholicism.
+
+The data are from the Pew Religious Landscape Survey [@PewData2014]. This survey used a random sample of the adult population of the United States and includes phone interviews with more than 35,000 American adults.  Nearly all of the respondents were selected from a random digit dialing (RDD) sample.  The survey was conducted in English and Spanish. The results of this survey can be generalized to the adult population of the United States in 2014.
+
+The Pew survey included four items asking respondents about various aspects of peace.  Respondents were asked how frequently they:
+
+- feel a deep sense of spiritual peace and well-being
+- feel a deep sense of wonder about the universe
+- feel a strong sense of gratitude or thankfulness
+- think about the meaning and purpose of life
+
+To each item, respondents were offered the same five response categories (recoded from less frequent to more frequent):
+
+1. Never
+2. Seldom
+3. Several times a year
+4. Once or twice a month
+5. At least once a week
+
+Together, these four items appear to measure an underlying trait of psychological well-being. To express this trait I can sum each's respondent's responses to the four items into a total score ranging from 4 to 20 in which a higher value indicates more frequent overall feelings of well-being.
+
+The validation task, and the purpose of this study, is therefore to test the hypothesis that these items actually measure one underlying trait, or four distinct traits.
+
+## Data preparation
+
+The first task is to prepare the data file. I begin by loading the `haven` package for reading an SPSS file, then loading the file. Because this is a study of people who were raised Catholic, I select only respondents who indicated Catholic as their childhood religion. Next I prepare the four items for the scale. I select the four items from the data frame; code 9 as missing; recode each item so that a higher value indicates more frequent feelings of peace, wonder, etc.; sum the items into a total score, then remove all cases with missing data.
+
+``{r}
+library(haven)
+pew <- read_sav("data/pew.sav") # read raw data from file in working directory
+pew <- pew[pew$CHRELTRAD == 10000, ] # select only former Catholics
+pew <- pew[ ,c("qi4a","qi4b","qi4c","qi4d")] # select the four well-being items
+pew$qi4a[pew$qi4a==9] <- NA # code 9 as missing
+pew$qi4b[pew$qi4b==9] <- NA # code 9 as missing
+pew$qi4c[pew$qi4c==9] <- NA # code 9 as missing
+pew$qi4d[pew$qi4d==9] <- NA # code 9 as missing
+pew$sense.peace <- 6-pew$qi4a # reverse code so that higher value indicates higher frequency
+pew$sense.wonder <- 6-pew$qi4b # reverse code so that higher value indicates higher frequency
+pew$sense.gratitude <- 6-pew$qi4c # reverse code so that higher value indicates higher frequency
+pew$sense.purpose <- 6-pew$qi4d # reverse code so that higher value indicates higher frequency
+pew$sense.total <- pew$sense.peace + pew$sense.wonder + pew$sense.gratitude + pew$sense.purpose # total score
+pew <- pew[ which(pew$sense.total > 3), ] # select only cases with complete wellbeing data
+pew <- pew[,c("sense.peace","sense.wonder","sense.gratitude","sense.purpose","sense.total")] # select last 5 items
+items <- pew[,1:5]
+
+pew$sense.peace2[pew$sense.peace == 1] <- 1
+pew$sense.peace2[pew$sense.peace == 2] <- 2
+pew$sense.peace2[pew$sense.peace == 3] <- 2
+pew$sense.peace2[pew$sense.peace == 4] <- 2
+pew$sense.peace2[pew$sense.peace == 5] <- 3
+
+pew$sense.wonder2[pew$sense.wonder == 1] <- 1
+pew$sense.wonder2[pew$sense.wonder == 2] <- 2
+pew$sense.wonder2[pew$sense.wonder == 3] <- 2
+pew$sense.wonder2[pew$sense.wonder == 4] <- 2
+pew$sense.wonder2[pew$sense.wonder == 5] <- 3
+
+pew$sense.gratitude2[pew$sense.gratitude == 1] <- 1
+pew$sense.gratitude2[pew$sense.gratitude == 2] <- 2
+pew$sense.gratitude2[pew$sense.gratitude == 3] <- 2
+pew$sense.gratitude2[pew$sense.gratitude == 4] <- 2
+pew$sense.gratitude2[pew$sense.gratitude == 5] <- 3
+
+pew$sense.purpose2[pew$sense.purpose == 1] <- 1
+pew$sense.purpose2[pew$sense.purpose == 2] <- 2
+pew$sense.purpose2[pew$sense.purpose == 3] <- 2
+pew$sense.purpose2[pew$sense.purpose == 4] <- 2
+pew$sense.purpose2[pew$sense.purpose == 5] <- 3
+
+#items2 <- pew[,9:12]
+#alpha(items2)
+
+pew$sense.peace3[pew$sense.peace == 5] <- 1
+pew$sense.peace3[pew$sense.peace <  5] <- 0
+pew$sense.wonder3[pew$sense.wonder == 5] <- 1
+pew$sense.wonder3[pew$sense.wonder <  5] <- 0
+pew$sense.gratitude3[pew$sense.gratitude == 5] <- 1
+pew$sense.gratitude3[pew$sense.gratitude <  5] <- 0
+pew$sense.purpose3[pew$sense.purpose == 5] <- 1
+pew$sense.purpose3[pew$sense.purpose <  5] <- 0
+
+items2 <- pew[,6:9]
+library(psych)
+alpha(items2)
+``
+
+## Description of the data
+
+A good way to begin the analysis is to explore the data.  The `describe` function from `psych` library provides a nice tool for presenting the descriptive statistics for a set of items.  In R there are different ways to present a table, but here in R Markdown I'm passing the `describe` function into an object called "stats", then calling the `kable` function (from the `knitr` package) to render the table.  
+
+``{r}
+library(psych)
+library(knitr)
+stats <- psych::describe(items)
+knitr::kable(stats, caption = "Descriptive Statistics for the Well-Being Items", digits=2)
+``
+
+The item for gratitude is definitely skewed, based on the skew and kurtosis statistics in the table.  
+
+I will supplement this table with a set of plots to visualize the data. Here I pass the 'table' function into an object for each item. Then I pass these objects into plots of uniform size and labeling.
+
+``{r fig.width=10, fig.height=7, fig.cap="Frequencies of Well-Being Items", fig.align='center'}
+peacecounts <- table(items$sense.peace)
+wondercounts <- table(items$sense.wonder)
+gratitudecounts <- table(items$sense.gratitude)
+purposecounts <- table(items$sense.purpose)
+labs <- c("1 Never", "2 Seldom", "3 Several times a year", "4 Once or twice a month", "5 At least once a week")
+par(mfrow=c(2,2))
+barplot(peacecounts, main="Deep Sense of Peace", horiz=FALSE, col='red', ylim = c(0,8000),
+        names.arg=labs)
+barplot(wondercounts, main="Deep Sense of Wonder", horiz=FALSE, col='blue', ylim = c(0,8000),
+        names.arg=labs)
+barplot(gratitudecounts, main="Strong Sense of Gratitude", horiz=FALSE, col='purple', ylim = c(0,8000),
+        names.arg=labs)
+barplot(purposecounts, main="Wonder about Meaning and Purpose", horiz=FALSE, col='green', ylim = c(0,8000),
+        names.arg=labs)
+``
+
+The striking thing about these data is their negative skew: the vast majority of respondents report frequently feeling peace, wonder, gratitude, and wonder about the meaning of life.  This skew poses some challenges.  One is less variance.  If the vast majority of Catholics past and present report frequent feelings of well-being, there is not much to explain.  The other challenge is that classical statistics are based the assumption that the data are normally distributed.
+
+## Internal consistency reliability
+
+One important source of evidence for a scale of well-being is correlations among the items.  Strong correlations among the items would be evidence that the items are measuring the same construct.  The matrix of correlations is presented in Table \@ref(tab:nice-tab).
+
+``{r nice-tab, tidy=FALSE}
+corrs <- cor(items, method = c("pearson")) # correlation matrix
+knitr::kable(round(corrs,2), caption = "Correlation Matrix") # fancy kable version of correlation matrix
+``
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat molestie efficitur. Proin non metus hendrerit elit viverra tincidunt. Integer tristique, nunc nec gravida semper, erat ligula placerat nunc, vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet. Morbi mattis lectus sit amet magna ultricies malesuada.
+
+`` {r nice-fig, fig.cap='Correlation Matrix of Well-being Items', out.width='80%', fig.asp=.75, fig.align='center'}
+library(corrplot)
+corrplot(cor(items), order = "original", tl.col='black', tl.cex=.75) # visual correlation matrix
+``
+
+Figure \@ref(fig:nice-fig). The correlations among the items are moderate at best. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat molestie efficitur. Proin non metus hendrerit elit viverra tincidunt. Integer tristique, nunc nec gravida semper, erat ligula placerat nunc, vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet. Morbi mattis lectus sit amet magna ultricies malesuada.
+Figure X reports internal reliability statistics.
+
+``{r alpha}
+library(psych)
+alpha(items)
+knitr::kable(alpha(items), caption = "Internal Reliability Statistics")
+``
+
+The Cronbach’s alpha coefficient for this scale is 0.68.  This is a minimally acceptable value for this statistic.
+
+### Unidimensionality
+
+Unidimensionality is the assumption that the four items measure only one underlying dimension. This is important to the extent that we want to analyze and report scores. To assess the dimensionality of these items I used confirmatory factor analysis (CFA) [@Brown2006] and PCAR.
+
+#### Confirmatory factor analysis (CFA)
+
+Factor analysis is commonly used to investigate whether item responses are unidimensional. In my use of CFA I used several statistics and fit indices:
+
+- Root Mean Square Error of Approximation (RMSEA)
+- Comparative Fit Index (CFI)
+- Tucker–Lewis Index (TLI), and
+- Standardized Root-Mean-Square Residual (SRMR)
+
+Based on published criteria (Hu & Bentler, 1999; Wang & Wang, 2019), I used the following standards for good fit:
+
+- CFI > 0.95
+- TLI > 0.95
+- RMSEA < 0.05
+- SRMR < 0.08
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat molestie efficitur. Proin non metus hendrerit elit viverra tincidunt. Integer tristique, nunc nec gravida semper, erat ligula placerat nunc, vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet. Morbi mattis lectus sit amet magna ultricies malesuada.
+
+I use the MLM estimator [@Brown2006].
+
+``{r}
+library(lavaan)
+#Model with 1 common factor
+wb_1factor <- ' #start of model
+
+# latent variable definitions (common factors)
+  wellbeing =~ NA*sense.peace + 
+            NA*sense.wonder +
+            NA*sense.gratitude +
+            NA*sense.purpose
+  
+# latent variable variances
+  wellbeing ~~ 1*wellbeing
+
+# latent variable covariances
+# latent variable means
+
+# manifest variable variances (uniquenesses)
+  sense.peace ~~ sense.peace
+  sense.wonder ~~ sense.wonder
+  sense.gratitude ~~ sense.gratitude
+  sense.purpose ~~ sense.purpose
+            
+# manifest variable covariances (uniquenesses)
+
+#manifest variable means 
+  sense.peace ~ 1
+  sense.wonder ~ 1
+  sense.gratitude ~ 1
+  sense.purpose ~ 1
+' #end of model
+
+CFA1 <- lavaan(wb_1factor, data=items, estimator = "MLM") # estimate model
+summary(CFA1, standardized=TRUE, fit.measures=TRUE)
+``
+
+The results of CFA, using MLR estimation, confirmed the second order factor model, in line with the original structure of the scale (see Olufadi, 2017), because the values of the indices were above the acceptable threshold [χ2 (167) = 284.032, p < 0.001; RMSEA = 0.030 (90% CI = 0.024-0.036), CFI = 0.983, TLI = 0.981, SRMR = 0.023], compared to the unidimensional model [χ2 (170) = 316.949, p < 0.001; RMSEA = 0.034 (90% CI = 0.028-0.039), CFI = 0.978, TLI = 0.976, SRMR = 0.023] and a 3-uncorrelated-factors model [χ2 (170) = 2427.628, p < 0.001; RMSEA = 0.132 (90% CI = 0.127-0.136), CFI = 0.669, TLI = 0.631, SRMR = 0.345]. Based on RMSEA, CFI, TLI, and SRMR, the results indicated that the model provided satisfactory representations of the underlying structure of the psychological well-being construct. All items loaded significantly (ranging from 0.535 to 0.817) in relation to each first order factor, at a p < 0.01 significance level.  These results of the CFA offer evidence that the four items measure one dimension of well-being.
+
+### Item response models
+
+Item response theory is another important framework for evaluating what items measure [@EmbretsonReise2000; @WrightMasters1982].  Item response theory methods complement classical test theory methods.  IRT does not assume that items are redundant; instead it investigates whether items make different contributions to the measurement of the latent trait.  IRT performs a calibration that yields an equal-interval scale that includes items as well as persons. Item response models offer several useful information from item response data.  One is an equal-interval scale that measures items as well as persons. One advantage of this is that we can see how items themselves fall along a continuum.  
+
+Here I fit several IRT models for polytomous items to the Pew data for the four well-being items.  I compare the fit of these models to determine the best way to estimate the trait of well-being. I credit Okan Bulut [-@Bulut2020] for his tutorial illustrating how to do IRT analyses in R using the `mirt` package.
+
+#### Partial Credit Model (PCM)
+
+The Rasch model allows measurement of persons and items on the same scale with equal interval properties of the scale and resulting linear measures (Wright & Stone, 1999). With this model, we can estimate item parameters independently of the characteristics of the calibrating sample, and we can estimate person parameters apart from the difficulties of the items taken (Masters, 1982; Rasch, 1966). Rasch models compute the probability of a certain response to each item given the level of the latent construct the individual possesses (i.e., psychological well-being) and the relevant item’s difficulty of endorsement.
+
+The Partial Credit Model (PCM) (Masters, 1982) is a polytomous item response model belonging to the Rasch family. The PCM assumes that items use ordered response categories as they exist in questionnaires, such as unidimensional rating scales. The number of response categories in each item may vary (Embretson & Reise, 2000). It follows that the PCM contains m (m + 1 being the number of response categories) threshold parameters. Each threshold parameter marks a category intersection (Masters, 1982). Threshold sometimes refers to “step difficulty” or “step parameter” and illustrates the point on the latent trait continuum (e.g., psychological well-being) where a response in category k becomes more likely than a response in category k – 1 (de Ayala, 2009). The PCM provides scores for items, persons, and step parameters on a logit scale.
+
+The Rasch model makes two assumptions of the data: (1) unidimensionality of the latent trait, and (2) local independence [@EmbretsonReise2000]. To check the unidimensionality assumption, I used confirmatory factor anlysis (CFA) and Rasch Principal Component Analysis of Residuals (PCAR; Smith, 2002) to confirm the factor structure of the psychological well-being scale. To check the assumption of local independence, I used the Q3 statistic (Yen, 1984). After the assumptions were fulfilled, I performed a PCM analysis.
+
+#### Local Independence
+
+The Rasch model assumption of local independence requires that any set of items should not share any meaningful correlation, once the latent variable is accounted for (Edwards, Houts, & Cai, 2018). I tested this using the Q3 statistic (Yen, 1984). When using Q3 statistic index criteria, in which it is specified that the raw residual correlation between pairs of items is never > 0.10 (Marais & Andrich, 2008), no items were found to have local dependence. The items that had the highest raw residual correlations had negative signs and no positive residual correlation. In other words, the assumption of local independence in this study was met.
+
+PCM Results: Item Measure, Fit Statistics, and Step Parameter
+
+Table 1 contains estimation results and the fit index model from each item of the Indonesian version of the MUDRAS. 
+
+The estimates of item difficulty were between -1.36 to 1.51 on the logit scale. Based on the item discrimination index (PTBIS; point-biserial correlation), which is analogous to classical test theory (item to-total-correlation), all the MUDRAS items have high discrimination values in a positive direction, with no values below 0.30 or negative values. This indicates that all items function well to distinguish persons with high versus low levels of religiosity. For each item, we examined the step parameter of category endorsements, and the statistics of each response for the items. All items, except item 8, followed the step ordering requirement. We found Item 8 (Step 1 = -0.33, Step 2 = -0.65, Step 3 = 0.98) experienced threshold disordering as the thresholds were not ordered from lowest to highest. However, none of the infit and outfit statistics for response categories were greater than 2. This finding indicated that collapsing categories was not necessary because the disordered threshold still fit and did not violate the Rasch model (Linacre, 2010; 2018). Based on this information, we concluded that, in general, the MUDRAS items fit the Rasch PCM model.
+
+Reliability
+
+Wright and Masters (1982) developed reliability measures based on the Rasch measurement model, which have a different concept from classical test theory (e.g., Cronbach’s alpha). Reliability is estimated both for persons and items, by means of Person Separation Reliability (PSR). This is an estimate of how well this instrument can distinguish respondents on the measured variable. In parallel, Item Separation Reliability (ISR) is an indication of how well items are separated by the persons taking the test (Wright & Stone, 1999). The cutoff of separation reliabilities is > 0.80 (Bond & Fox, 2015). The PSR of the Indonesian version of MUDRAS was 0.92, and the ISR was 0.99. The PSR and ISR were higher than the predefined criteria. We also computed Cronbach’s alpha, which was 0.93, which is higher than the Cronbach’s alpha of the original version (alpha = 0.89) (see Olufadi, 2017). Both alphas exceed the 0.70 cutoff value (Nunnally, 1978), indicating that the Indonesian version of the MUDRAS has excellent internal consistency.
+
+I begin by loading the `mirt` library and estimating the Partial Credit Model (PCM) on the data from the four items.  This model constrains the slopes to 1 and freely estimates the variance parameters.
+
+``{r}
+library(mirt)
+model.pcm <- 'PCM = 1-4'
+results.pcm <- mirt(data=items2, model=model.pcm, itemtype="Rasch", verbose=FALSE)
+coef.pcm <- coef(results.pcm, IRTpars=TRUE, simplify=TRUE)
+items.pcm <- as.data.frame(coef.pcm$items)
+print(results.pcm)
+knitr::kable(round(items.pcm,2), caption = "Partial Credit Model (PCM) - Item Parameters")
+itemplot(results.pcm, 1, type='infotrace')
+``
+
+In the output, we see a data frame of the estimated item parameters. The first column shows the discrimination parameter, which is equal to “1” for all items because the Partial Credit Model, similar to the Rasch model, constrains the discrimination parameter to be “1”. In the following columns (b1 to b4) are the estimated thresholds or step parameters. Because the well-being items all have five response categories, the Partial Credit Model estimates four threshold parameters (b1 to b4) for each item.  The question here is the spread of the parameters across the range of the trait.  In the PCM, "the property of ordered threshold parameters is not a requirement in the partial credit or genearlized partial credit models" [@EmbretsonReise2000].
+
+Two fit statistics can be use to assess the fit of an item to the PCM: the infit mean square (MNSQ) and the outfit mean square (MNSQ). The infit statistic places greater emphasis on unexpected responses that are close to the people and item location. The outfit is sensitive to unexpected responses that are far from the location (Bond & Fox, 2015). The infit and outfit values identify potential unexpected response patterns. The expected value of infit or outfit for each item is 1.0, with a range of acceptable values ranging from 0.5 to 1.5. Values outside this boundary indicate a lack of fit between items and models.
+
+``{r}
+itemfit(results.pcm, 'infit')
+``
+
+As seen in the table, all four items had infit and outfit statistics within an acceptable value (0.5 - 1.5). No misfitting items were found and this means that the four items fit within the Rasch PCM.
+
+We can use the plot function in the `mirt` package to examine the items visually. The curves are called category response curves because they represent "the probability of an examinee (or survey respondent) responding in a particular category conditional on trait level" [@EmbretsonReise2000].  In general, "the higher the slope parameters, the steeper the operating characteristic curves and the more narrow and peaked the category response curves, indicating that the response categories differentiate among trait levels fairly well" [@EmbretsonReise2000].  Polytomous IRT models such as the Partial Credit Model have option characteristic curves (OCCs) which can be considered as an extension of item characteristic curves (ICCs) for polytomous items. Because the items have more than two response categories, OCCs have multiple curves in the same plot. Each curve represents the probability of selecting a particular response option as a function of the latent trait.
+
+``{r}
+plot(results.pcm, type = 'trace', which.items = c(1,2,3,4),
+     main = "", par.settings = simpleTheme(lty=1:4,lwd=2),
+     auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+``
+
+In the figure, each item has four OCCs representing the four response options. The response categories are labeled as “P1” to “P4”. For all four items, the OCCs follow the same order as the response categories. The OCC for the first response option (P1) is on the very left side of the plot, whereas the last response option (P4) is located on the right side of the plot.  There are two questions to ask of OCCs: (1) Are they in the correct order? and (2) Does each response category meaningfully represent the responses of respondents at a given trait level?  In this case, the OCCs are in the correct order, but the middle categories do not seem to capture distinct respondents.
+
+One way to evaluate the fit of the Partial Credit Model is to evaluate how well it fits the data from the item responses.  The following table presents this information.
+
+``{r}
+itemplot(results.pcm, 1, type = 'score')
+empirical_plot(items2, c(1,2,3,4), main = 'Empirical Plots')
+pcmfit <- as.data.frame(itemfit(results.pcm))
+knitr::kable(pcmfit, caption = 'Partial Credit Model (PCM) - Item Fit Statistics')
+itemfit(results.pcm, empirical.plot=1)
+itemfit(results.pcm, 'infit')
+``
+
+This model blows.
+
+#### Generalized Partial Credit Model (GPCM)
+
+``{r}
+model.gpcm <- 'GPCM = 1-4'
+results.gpcm <- mirt(data=items, model=model.gpcm, itemtype="gpcm", verbose=FALSE)
+coef.gpcm <- coef(results.gpcm, IRTpars=TRUE, simplify=TRUE)
+items.gpcm <- as.data.frame(coef.gpcm$items)
+print(results.gpcm)
+#print(items.gpcm)
+knitr::kable(round(items.gpcm,2), caption = "Generalized Partial Credit Model (GPCM) - Item Parameters")
+``
+
+In the PCM, "the property of ordered threshold parameters is not a requirement in the partial credit or genearlized partial credit models" [@EmbretsonReise2000].
+
+``{r}
+plot(results.gpcm, type = 'trace', which.items = c(1,2,3,4),
+     main = "", par.settings = simpleTheme(lty=1:4,lwd=2),
+     auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+``
+
+#### Rating Scale Model (RSM)
+
+``{r}
+model.rsm <- 'RSM = 1-4'
+results.rsm <- mirt(data=items, model=model.rsm, itemtype="rsm", verbose=FALSE)
+coef.rsm <- coef(results.rsm, simplify=TRUE)
+items.rsm <- as.data.frame(coef.rsm$items)
+print(summary(results.rsm))
+#print(items.rsm)
+knitr::kable(round(items.rsm,2), caption = "Rating Scale Model (RSM) - Item Parameters")
+
+plot(results.rsm, type = 'trace', which.items = c(1,2,3,4),
+     main = "", par.settings = simpleTheme(lty=1:4,lwd=2),
+     auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+plot(results.rsm, type = 'itemscore', theta_lim = c(-4,4), lwd=2, facet_items = FALSE) # item scoring traceline
+
+#plot(results.rsm, type = 'infotrace', which.items = c(1,2,3,4),
+#     main = "", par.settings = simpleTheme(lwd=2)) # item information functions (IIF)
+#plot(results.rsm, type = 'info', theta_lim = c(-4,4), lwd=2) # test information curve
+#plot(results.rsm, type = 'SE', theta_lim = c(-4,4), lwd=2) # test standard errors
+``
+
+
+
+#### Graded Response Model (GRM)
+
+``{r}
+model.grm <- 'GRM = 1-4'
+results.grm <- mirt(data=items, model=model.grm, itemtype="graded", verbose=FALSE)
+coef.grm <- coef(results.grm, simplify=TRUE)
+items.grm <- as.data.frame(coef.grm$items)
+print(summary(results.grm))
+#print(items.grm)
+knitr::kable(round(items.grm,2), caption = "Graded Response Model (GRM) - Item Parameters")
+
+
+plot(results.grm, type = 'trace', which.items = c(1,2,3,4),
+     main = "", par.settings = simpleTheme(lty=1:4,lwd=2),
+     auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+plot(results.grm, type = 'itemscore', theta_lim = c(-4,4), lwd=2, facet_items = FALSE) # item scoring traceline
+
+#plot(results.rsm, type = 'infotrace', which.items = c(1,2,3,4),
+#     main = "", par.settings = simpleTheme(lwd=2)) # item information functions (IIF)
+#plot(results.rsm, type = 'info', theta_lim = c(-4,4), lwd=2) # test information curve
+#plot(results.rsm, type = 'SE', theta_lim = c(-4,4), lwd=2) # test standard errors
+``
+
+In the Graded Response Model, between category threshold parameters are ordered.
+
+
+#### Trait scores
+
+``{r}
+# attach factor scores
+pcmscores <- fscores(results.pcm)
+gpcmscores <- fscores(results.gpcm)
+rsmscores <- fscores(results.rsm)
+grmscores <- fscores(results.grm)
+pew <- cbind(pew, pcmscores)
+pew <- cbind(pew, gpcmscores)
+pew <- cbind(pew, rsmscores)
+pew <- cbind(pew, grmscores)
+head(items)
+
+scores <- pew[ ,5:9]
+corrs2 <- cor(scores, method = c("pearson"))
+knitr::kable(round(corrs2,2), caption = "Correlation Matrix")
+``
+
+### References

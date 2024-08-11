@@ -1,0 +1,12 @@
+name: "validity"
+navbar:
+  title: "Validating the Well-Being Scale"
+  left:
+    - text: "Home"
+      href: index.html
+    #- text: "About Me"
+    #  href: about.html
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jack B. Huber, Ph.D." />
+
+
+<title>Validity Evidence for a Scale of Psychological Well-Being</title>
+
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Validating the Well-Being Scale</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Validity Evidence for a Scale of
+Psychological Well-Being</h1>
+<h4 class="author">Jack B. Huber, Ph.D.</h4>
+
+</div>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This analysis is a validity study of a four-item scale of
+psychological well-being, a key outcome variable in a study I am
+conducting of the emotional outcomes of disaffiliation with Roman
+Catholicism.</p>
+<p>The data are from the Pew Religious Landscape Survey <span
+class="citation">(<a href="#ref-PewData2014">The Pew Research Center
+2014</a>)</span>. This survey used a random sample of the adult
+population of the United States and includes phone interviews with more
+than 35,000 American adults. Nearly all of the respondents were selected
+from a random digit dialing (RDD) sample. The survey was conducted in
+English and Spanish. The results of this survey can be generalized to
+the adult population of the United States in 2014.</p>
+<p>The Pew survey included four items asking respondents about various
+aspects of peace. Respondents were asked how frequently they:</p>
+<ul>
+<li>feel a deep sense of spiritual peace and well-being</li>
+<li>feel a deep sense of wonder about the universe</li>
+<li>feel a strong sense of gratitude or thankfulness</li>
+<li>think about the meaning and purpose of life</li>
+</ul>
+<p>To each item, respondents were offered the same five response
+categories (recoded from less frequent to more frequent):</p>
+<ol style="list-style-type: decimal">
+<li>Never</li>
+<li>Seldom</li>
+<li>Several times a year</li>
+<li>Once or twice a month</li>
+<li>At least once a week</li>
+</ol>
+<p>Together, these four items appear to measure an underlying trait of
+psychological well-being. To express this trait I can sum each’s
+respondent’s responses to the four items into a total score ranging from
+4 to 20 in which a higher value indicates more frequent overall feelings
+of well-being.</p>
+<p>The validation task, and the purpose of this study, is therefore to
+test the hypothesis that these items actually measure one underlying
+trait, or four distinct traits.</p>
+</div>
+<div id="data-preparation" class="section level2">
+<h2>Data preparation</h2>
+<p>The first task is to prepare the data file. I begin by loading the
+<code>haven</code> package for reading an SPSS file, then loading the
+file. Because this is a study of people who were raised Catholic, I
+select only respondents who indicated Catholic as their childhood
+religion. Next I prepare the four items for the scale. I select the four
+items from the data frame; code 9 as missing; recode each item so that a
+higher value indicates more frequent feelings of peace, wonder, etc.;
+sum the items into a total score, then remove all cases with missing
+data.</p>
+<p>``{r} library(haven) pew &lt;- read_sav(“data/pew.sav”) # read raw
+data from file in working directory pew &lt;- pew[pew<span
+class="math inline">\(CHRELTRAD == 10000, ] # select only former
+Catholics
+pew &lt;- pew[
+,c(&quot;qi4a&quot;,&quot;qi4b&quot;,&quot;qi4c&quot;,&quot;qi4d&quot;)]
+# select the four well-being items
+pew\)</span>qi4a[pew<span class="math inline">\(qi4a==9] &lt;- NA # code
+9 as missing
+pew\)</span>qi4b[pew<span class="math inline">\(qi4b==9] &lt;- NA # code
+9 as missing
+pew\)</span>qi4c[pew<span class="math inline">\(qi4c==9] &lt;- NA # code
+9 as missing
+pew\)</span>qi4d[pew<span class="math inline">\(qi4d==9] &lt;- NA # code
+9 as missing
+pew\)</span>sense.peace &lt;- 6-pew<span class="math inline">\(qi4a #
+reverse code so that higher value indicates higher frequency
+pew\)</span>sense.wonder &lt;- 6-pew<span class="math inline">\(qi4b #
+reverse code so that higher value indicates higher frequency
+pew\)</span>sense.gratitude &lt;- 6-pew<span class="math inline">\(qi4c
+# reverse code so that higher value indicates higher frequency
+pew\)</span>sense.purpose &lt;- 6-pew<span class="math inline">\(qi4d #
+reverse code so that higher value indicates higher frequency
+pew\)</span>sense.total &lt;- pew<span class="math inline">\(sense.peace
++ pew\)</span>sense.wonder + pew<span
+class="math inline">\(sense.gratitude + pew\)</span>sense.purpose #
+total score pew &lt;- pew[ which(pew$sense.total &gt; 3), ] # select
+only cases with complete wellbeing data pew &lt;-
+pew[,c(“sense.peace”,“sense.wonder”,“sense.gratitude”,“sense.purpose”,“sense.total”)]
+# select last 5 items items &lt;- pew[,1:5]</p>
+<p>pew<span class="math inline">\(sense.peace2[pew\)</span>sense.peace
+== 1] &lt;- 1 pew<span
+class="math inline">\(sense.peace2[pew\)</span>sense.peace == 2] &lt;- 2
+pew<span class="math inline">\(sense.peace2[pew\)</span>sense.peace ==
+3] &lt;- 2 pew<span
+class="math inline">\(sense.peace2[pew\)</span>sense.peace == 4] &lt;- 2
+pew<span class="math inline">\(sense.peace2[pew\)</span>sense.peace ==
+5] &lt;- 3</p>
+<p>pew<span class="math inline">\(sense.wonder2[pew\)</span>sense.wonder
+== 1] &lt;- 1 pew<span
+class="math inline">\(sense.wonder2[pew\)</span>sense.wonder == 2] &lt;-
+2 pew<span class="math inline">\(sense.wonder2[pew\)</span>sense.wonder
+== 3] &lt;- 2 pew<span
+class="math inline">\(sense.wonder2[pew\)</span>sense.wonder == 4] &lt;-
+2 pew<span class="math inline">\(sense.wonder2[pew\)</span>sense.wonder
+== 5] &lt;- 3</p>
+<p>pew<span
+class="math inline">\(sense.gratitude2[pew\)</span>sense.gratitude == 1]
+&lt;- 1 pew<span
+class="math inline">\(sense.gratitude2[pew\)</span>sense.gratitude == 2]
+&lt;- 2 pew<span
+class="math inline">\(sense.gratitude2[pew\)</span>sense.gratitude == 3]
+&lt;- 2 pew<span
+class="math inline">\(sense.gratitude2[pew\)</span>sense.gratitude == 4]
+&lt;- 2 pew<span
+class="math inline">\(sense.gratitude2[pew\)</span>sense.gratitude == 5]
+&lt;- 3</p>
+<p>pew<span
+class="math inline">\(sense.purpose2[pew\)</span>sense.purpose == 1]
+&lt;- 1 pew<span
+class="math inline">\(sense.purpose2[pew\)</span>sense.purpose == 2]
+&lt;- 2 pew<span
+class="math inline">\(sense.purpose2[pew\)</span>sense.purpose == 3]
+&lt;- 2 pew<span
+class="math inline">\(sense.purpose2[pew\)</span>sense.purpose == 4]
+&lt;- 2 pew<span
+class="math inline">\(sense.purpose2[pew\)</span>sense.purpose == 5]
+&lt;- 3</p>
+<p>#items2 &lt;- pew[,9:12] #alpha(items2)</p>
+<p>pew<span class="math inline">\(sense.peace3[pew\)</span>sense.peace
+== 5] &lt;- 1 pew<span
+class="math inline">\(sense.peace3[pew\)</span>sense.peace &lt; 5] &lt;-
+0 pew<span class="math inline">\(sense.wonder3[pew\)</span>sense.wonder
+== 5] &lt;- 1 pew<span
+class="math inline">\(sense.wonder3[pew\)</span>sense.wonder &lt; 5]
+&lt;- 0 pew<span
+class="math inline">\(sense.gratitude3[pew\)</span>sense.gratitude == 5]
+&lt;- 1 pew<span
+class="math inline">\(sense.gratitude3[pew\)</span>sense.gratitude &lt;
+5] &lt;- 0 pew<span
+class="math inline">\(sense.purpose3[pew\)</span>sense.purpose == 5]
+&lt;- 1 pew<span
+class="math inline">\(sense.purpose3[pew\)</span>sense.purpose &lt; 5]
+&lt;- 0</p>
+<p>items2 &lt;- pew[,6:9] library(psych) alpha(items2) ``</p>
+</div>
+<div id="description-of-the-data" class="section level2">
+<h2>Description of the data</h2>
+<p>A good way to begin the analysis is to explore the data. The
+<code>describe</code> function from <code>psych</code> library provides
+a nice tool for presenting the descriptive statistics for a set of
+items. In R there are different ways to present a table, but here in R
+Markdown I’m passing the <code>describe</code> function into an object
+called “stats”, then calling the <code>kable</code> function (from the
+<code>knitr</code> package) to render the table.</p>
+<p><code>{r} library(psych) library(knitr) stats &lt;- psych::describe(items) knitr::kable(stats, caption = "Descriptive Statistics for the Well-Being Items", digits=2)</code></p>
+<p>The item for gratitude is definitely skewed, based on the skew and
+kurtosis statistics in the table.</p>
+<p>I will supplement this table with a set of plots to visualize the
+data. Here I pass the ‘table’ function into an object for each item.
+Then I pass these objects into plots of uniform size and labeling.</p>
+<p><code>{r fig.width=10, fig.height=7, fig.cap="Frequencies of Well-Being Items", fig.align='center'} peacecounts &lt;- table(items$sense.peace) wondercounts &lt;- table(items$sense.wonder) gratitudecounts &lt;- table(items$sense.gratitude) purposecounts &lt;- table(items$sense.purpose) labs &lt;- c("1 Never", "2 Seldom", "3 Several times a year", "4 Once or twice a month", "5 At least once a week") par(mfrow=c(2,2)) barplot(peacecounts, main="Deep Sense of Peace", horiz=FALSE, col='red', ylim = c(0,8000),         names.arg=labs) barplot(wondercounts, main="Deep Sense of Wonder", horiz=FALSE, col='blue', ylim = c(0,8000),         names.arg=labs) barplot(gratitudecounts, main="Strong Sense of Gratitude", horiz=FALSE, col='purple', ylim = c(0,8000),         names.arg=labs) barplot(purposecounts, main="Wonder about Meaning and Purpose", horiz=FALSE, col='green', ylim = c(0,8000),         names.arg=labs)</code></p>
+<p>The striking thing about these data is their negative skew: the vast
+majority of respondents report frequently feeling peace, wonder,
+gratitude, and wonder about the meaning of life. This skew poses some
+challenges. One is less variance. If the vast majority of Catholics past
+and present report frequent feelings of well-being, there is not much to
+explain. The other challenge is that classical statistics are based the
+assumption that the data are normally distributed.</p>
+</div>
+<div id="internal-consistency-reliability" class="section level2">
+<h2>Internal consistency reliability</h2>
+<p>One important source of evidence for a scale of well-being is
+correlations among the items. Strong correlations among the items would
+be evidence that the items are measuring the same construct. The matrix
+of correlations is presented in Table @ref(tab:nice-tab).</p>
+<p><code>{r nice-tab, tidy=FALSE} corrs &lt;- cor(items, method = c("pearson")) # correlation matrix knitr::kable(round(corrs,2), caption = "Correlation Matrix") # fancy kable version of correlation matrix</code></p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae
+mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat
+molestie efficitur. Proin non metus hendrerit elit viverra tincidunt.
+Integer tristique, nunc nec gravida semper, erat ligula placerat nunc,
+vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non
+tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet.
+Morbi mattis lectus sit amet magna ultricies malesuada.</p>
+<p><code>{r nice-fig, fig.cap='Correlation Matrix of Well-being Items', out.width='80%', fig.asp=.75, fig.align='center'} library(corrplot) corrplot(cor(items), order = "original", tl.col='black', tl.cex=.75) # visual correlation matrix</code></p>
+<p>Figure @ref(fig:nice-fig). The correlations among the items are
+moderate at best. Lorem ipsum dolor sit amet, consectetur adipiscing
+elit. Pellentesque tincidunt ex ut condimentum vulputate. Sed feugiat
+mattis lectus vitae mollis. Suspendisse sodales urna id pharetra mattis.
+Mauris feugiat molestie efficitur. Proin non metus hendrerit elit
+viverra tincidunt. Integer tristique, nunc nec gravida semper, erat
+ligula placerat nunc, vitae tincidunt diam odio ut est. Morbi sit amet
+posuere ante, non tempor leo. Nam fermentum mi urna, ut lacinia metus
+venenatis sit amet. Morbi mattis lectus sit amet magna ultricies
+malesuada. Figure X reports internal reliability statistics.</p>
+<p><code>{r alpha} library(psych) alpha(items) knitr::kable(alpha(items), caption = "Internal Reliability Statistics")</code></p>
+<p>The Cronbach’s alpha coefficient for this scale is 0.68. This is a
+minimally acceptable value for this statistic.</p>
+<div id="unidimensionality" class="section level3">
+<h3>Unidimensionality</h3>
+<p>Unidimensionality is the assumption that the four items measure only
+one underlying dimension. This is important to the extent that we want
+to analyze and report scores. To assess the dimensionality of these
+items I used confirmatory factor analysis (CFA) <span
+class="citation">(<a href="#ref-Brown2006">Brown 2006</a>)</span> and
+PCAR.</p>
+<div id="confirmatory-factor-analysis-cfa" class="section level4">
+<h4>Confirmatory factor analysis (CFA)</h4>
+<p>Factor analysis is commonly used to investigate whether item
+responses are unidimensional. In my use of CFA I used several statistics
+and fit indices:</p>
+<ul>
+<li>Root Mean Square Error of Approximation (RMSEA)</li>
+<li>Comparative Fit Index (CFI)</li>
+<li>Tucker–Lewis Index (TLI), and</li>
+<li>Standardized Root-Mean-Square Residual (SRMR)</li>
+</ul>
+<p>Based on published criteria (Hu &amp; Bentler, 1999; Wang &amp; Wang,
+2019), I used the following standards for good fit:</p>
+<ul>
+<li>CFI &gt; 0.95</li>
+<li>TLI &gt; 0.95</li>
+<li>RMSEA &lt; 0.05</li>
+<li>SRMR &lt; 0.08</li>
+</ul>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae
+mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat
+molestie efficitur. Proin non metus hendrerit elit viverra tincidunt.
+Integer tristique, nunc nec gravida semper, erat ligula placerat nunc,
+vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non
+tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet.
+Morbi mattis lectus sit amet magna ultricies malesuada.</p>
+<p>I use the MLM estimator <span class="citation">(<a
+href="#ref-Brown2006">Brown 2006</a>)</span>.</p>
+<p>``{r} library(lavaan) #Model with 1 common factor wb_1factor &lt;- ’
+#start of model</p>
+</div>
+</div>
+</div>
+<div id="latent-variable-definitions-common-factors"
+class="section level1">
+<h1>latent variable definitions (common factors)</h1>
+<p>wellbeing =~ NA<em>sense.peace + NA</em>sense.wonder +
+NA<em>sense.gratitude + NA</em>sense.purpose</p>
+</div>
+<div id="latent-variable-variances" class="section level1">
+<h1>latent variable variances</h1>
+<p>wellbeing ~~ 1*wellbeing</p>
+</div>
+<div id="latent-variable-covariances" class="section level1">
+<h1>latent variable covariances</h1>
+</div>
+<div id="latent-variable-means" class="section level1">
+<h1>latent variable means</h1>
+</div>
+<div id="manifest-variable-variances-uniquenesses"
+class="section level1">
+<h1>manifest variable variances (uniquenesses)</h1>
+<p>sense.peace ~~ sense.peace sense.wonder ~~ sense.wonder
+sense.gratitude ~~ sense.gratitude sense.purpose ~~ sense.purpose</p>
+</div>
+<div id="manifest-variable-covariances-uniquenesses"
+class="section level1">
+<h1>manifest variable covariances (uniquenesses)</h1>
+<p>#manifest variable means sense.peace ~ 1 sense.wonder ~ 1
+sense.gratitude ~ 1 sense.purpose ~ 1 ’ #end of model</p>
+<p>CFA1 &lt;- lavaan(wb_1factor, data=items, estimator = “MLM”) #
+estimate model summary(CFA1, standardized=TRUE, fit.measures=TRUE)
+``</p>
+<p>The results of CFA, using MLR estimation, confirmed the second order
+factor model, in line with the original structure of the scale (see
+Olufadi, 2017), because the values of the indices were above the
+acceptable threshold [χ2 (167) = 284.032, p &lt; 0.001; RMSEA = 0.030
+(90% CI = 0.024-0.036), CFI = 0.983, TLI = 0.981, SRMR = 0.023],
+compared to the unidimensional model [χ2 (170) = 316.949, p &lt; 0.001;
+RMSEA = 0.034 (90% CI = 0.028-0.039), CFI = 0.978, TLI = 0.976, SRMR =
+0.023] and a 3-uncorrelated-factors model [χ2 (170) = 2427.628, p &lt;
+0.001; RMSEA = 0.132 (90% CI = 0.127-0.136), CFI = 0.669, TLI = 0.631,
+SRMR = 0.345]. Based on RMSEA, CFI, TLI, and SRMR, the results indicated
+that the model provided satisfactory representations of the underlying
+structure of the psychological well-being construct. All items loaded
+significantly (ranging from 0.535 to 0.817) in relation to each first
+order factor, at a p &lt; 0.01 significance level. These results of the
+CFA offer evidence that the four items measure one dimension of
+well-being.</p>
+<div id="item-response-models" class="section level3">
+<h3>Item response models</h3>
+<p>Item response theory is another important framework for evaluating
+what items measure <span class="citation">(<a
+href="#ref-EmbretsonReise2000">Embretson and Reise 2000</a>; <a
+href="#ref-WrightMasters1982">Wright and Masters 1982</a>)</span>. Item
+response theory methods complement classical test theory methods. IRT
+does not assume that items are redundant; instead it investigates
+whether items make different contributions to the measurement of the
+latent trait. IRT performs a calibration that yields an equal-interval
+scale that includes items as well as persons. Item response models offer
+several useful information from item response data. One is an
+equal-interval scale that measures items as well as persons. One
+advantage of this is that we can see how items themselves fall along a
+continuum.</p>
+<p>Here I fit several IRT models for polytomous items to the Pew data
+for the four well-being items. I compare the fit of these models to
+determine the best way to estimate the trait of well-being. I credit
+Okan Bulut <span class="citation">(<a
+href="#ref-Bulut2020">2020</a>)</span> for his tutorial illustrating how
+to do IRT analyses in R using the <code>mirt</code> package.</p>
+<div id="partial-credit-model-pcm" class="section level4">
+<h4>Partial Credit Model (PCM)</h4>
+<p>The Rasch model allows measurement of persons and items on the same
+scale with equal interval properties of the scale and resulting linear
+measures (Wright &amp; Stone, 1999). With this model, we can estimate
+item parameters independently of the characteristics of the calibrating
+sample, and we can estimate person parameters apart from the
+difficulties of the items taken (Masters, 1982; Rasch, 1966). Rasch
+models compute the probability of a certain response to each item given
+the level of the latent construct the individual possesses (i.e.,
+psychological well-being) and the relevant item’s difficulty of
+endorsement.</p>
+<p>The Partial Credit Model (PCM) (Masters, 1982) is a polytomous item
+response model belonging to the Rasch family. The PCM assumes that items
+use ordered response categories as they exist in questionnaires, such as
+unidimensional rating scales. The number of response categories in each
+item may vary (Embretson &amp; Reise, 2000). It follows that the PCM
+contains m (m + 1 being the number of response categories) threshold
+parameters. Each threshold parameter marks a category intersection
+(Masters, 1982). Threshold sometimes refers to “step difficulty” or
+“step parameter” and illustrates the point on the latent trait continuum
+(e.g., psychological well-being) where a response in category k becomes
+more likely than a response in category k – 1 (de Ayala, 2009). The PCM
+provides scores for items, persons, and step parameters on a logit
+scale.</p>
+<p>The Rasch model makes two assumptions of the data: (1)
+unidimensionality of the latent trait, and (2) local independence <span
+class="citation">(<a href="#ref-EmbretsonReise2000">Embretson and Reise
+2000</a>)</span>. To check the unidimensionality assumption, I used
+confirmatory factor anlysis (CFA) and Rasch Principal Component Analysis
+of Residuals (PCAR; Smith, 2002) to confirm the factor structure of the
+psychological well-being scale. To check the assumption of local
+independence, I used the Q3 statistic (Yen, 1984). After the assumptions
+were fulfilled, I performed a PCM analysis.</p>
+</div>
+<div id="local-independence" class="section level4">
+<h4>Local Independence</h4>
+<p>The Rasch model assumption of local independence requires that any
+set of items should not share any meaningful correlation, once the
+latent variable is accounted for (Edwards, Houts, &amp; Cai, 2018). I
+tested this using the Q3 statistic (Yen, 1984). When using Q3 statistic
+index criteria, in which it is specified that the raw residual
+correlation between pairs of items is never &gt; 0.10 (Marais &amp;
+Andrich, 2008), no items were found to have local dependence. The items
+that had the highest raw residual correlations had negative signs and no
+positive residual correlation. In other words, the assumption of local
+independence in this study was met.</p>
+<p>PCM Results: Item Measure, Fit Statistics, and Step Parameter</p>
+<p>Table 1 contains estimation results and the fit index model from each
+item of the Indonesian version of the MUDRAS.</p>
+<p>The estimates of item difficulty were between -1.36 to 1.51 on the
+logit scale. Based on the item discrimination index (PTBIS;
+point-biserial correlation), which is analogous to classical test theory
+(item to-total-correlation), all the MUDRAS items have high
+discrimination values in a positive direction, with no values below 0.30
+or negative values. This indicates that all items function well to
+distinguish persons with high versus low levels of religiosity. For each
+item, we examined the step parameter of category endorsements, and the
+statistics of each response for the items. All items, except item 8,
+followed the step ordering requirement. We found Item 8 (Step 1 = -0.33,
+Step 2 = -0.65, Step 3 = 0.98) experienced threshold disordering as the
+thresholds were not ordered from lowest to highest. However, none of the
+infit and outfit statistics for response categories were greater than 2.
+This finding indicated that collapsing categories was not necessary
+because the disordered threshold still fit and did not violate the Rasch
+model (Linacre, 2010; 2018). Based on this information, we concluded
+that, in general, the MUDRAS items fit the Rasch PCM model.</p>
+<p>Reliability</p>
+<p>Wright and Masters (1982) developed reliability measures based on the
+Rasch measurement model, which have a different concept from classical
+test theory (e.g., Cronbach’s alpha). Reliability is estimated both for
+persons and items, by means of Person Separation Reliability (PSR). This
+is an estimate of how well this instrument can distinguish respondents
+on the measured variable. In parallel, Item Separation Reliability (ISR)
+is an indication of how well items are separated by the persons taking
+the test (Wright &amp; Stone, 1999). The cutoff of separation
+reliabilities is &gt; 0.80 (Bond &amp; Fox, 2015). The PSR of the
+Indonesian version of MUDRAS was 0.92, and the ISR was 0.99. The PSR and
+ISR were higher than the predefined criteria. We also computed
+Cronbach’s alpha, which was 0.93, which is higher than the Cronbach’s
+alpha of the original version (alpha = 0.89) (see Olufadi, 2017). Both
+alphas exceed the 0.70 cutoff value (Nunnally, 1978), indicating that
+the Indonesian version of the MUDRAS has excellent internal
+consistency.</p>
+<p>I begin by loading the <code>mirt</code> library and estimating the
+Partial Credit Model (PCM) on the data from the four items. This model
+constrains the slopes to 1 and freely estimates the variance
+parameters.</p>
+<p><code>{r} library(mirt) model.pcm &lt;- 'PCM = 1-4' results.pcm &lt;- mirt(data=items2, model=model.pcm, itemtype="Rasch", verbose=FALSE) coef.pcm &lt;- coef(results.pcm, IRTpars=TRUE, simplify=TRUE) items.pcm &lt;- as.data.frame(coef.pcm$items) print(results.pcm) knitr::kable(round(items.pcm,2), caption = "Partial Credit Model (PCM) - Item Parameters") itemplot(results.pcm, 1, type='infotrace')</code></p>
+<p>In the output, we see a data frame of the estimated item parameters.
+The first column shows the discrimination parameter, which is equal to
+“1” for all items because the Partial Credit Model, similar to the Rasch
+model, constrains the discrimination parameter to be “1”. In the
+following columns (b1 to b4) are the estimated thresholds or step
+parameters. Because the well-being items all have five response
+categories, the Partial Credit Model estimates four threshold parameters
+(b1 to b4) for each item. The question here is the spread of the
+parameters across the range of the trait. In the PCM, “the property of
+ordered threshold parameters is not a requirement in the partial credit
+or genearlized partial credit models” <span class="citation">(<a
+href="#ref-EmbretsonReise2000">Embretson and Reise 2000</a>)</span>.</p>
+<p>Two fit statistics can be use to assess the fit of an item to the
+PCM: the infit mean square (MNSQ) and the outfit mean square (MNSQ). The
+infit statistic places greater emphasis on unexpected responses that are
+close to the people and item location. The outfit is sensitive to
+unexpected responses that are far from the location (Bond &amp; Fox,
+2015). The infit and outfit values identify potential unexpected
+response patterns. The expected value of infit or outfit for each item
+is 1.0, with a range of acceptable values ranging from 0.5 to 1.5.
+Values outside this boundary indicate a lack of fit between items and
+models.</p>
+<p><code>{r} itemfit(results.pcm, 'infit')</code></p>
+<p>As seen in the table, all four items had infit and outfit statistics
+within an acceptable value (0.5 - 1.5). No misfitting items were found
+and this means that the four items fit within the Rasch PCM.</p>
+<p>We can use the plot function in the <code>mirt</code> package to
+examine the items visually. The curves are called category response
+curves because they represent “the probability of an examinee (or survey
+respondent) responding in a particular category conditional on trait
+level” <span class="citation">(<a
+href="#ref-EmbretsonReise2000">Embretson and Reise 2000</a>)</span>. In
+general, “the higher the slope parameters, the steeper the operating
+characteristic curves and the more narrow and peaked the category
+response curves, indicating that the response categories differentiate
+among trait levels fairly well” <span class="citation">(<a
+href="#ref-EmbretsonReise2000">Embretson and Reise 2000</a>)</span>.
+Polytomous IRT models such as the Partial Credit Model have option
+characteristic curves (OCCs) which can be considered as an extension of
+item characteristic curves (ICCs) for polytomous items. Because the
+items have more than two response categories, OCCs have multiple curves
+in the same plot. Each curve represents the probability of selecting a
+particular response option as a function of the latent trait.</p>
+<p><code>{r} plot(results.pcm, type = 'trace', which.items = c(1,2,3,4),      main = "", par.settings = simpleTheme(lty=1:4,lwd=2),      auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves</code></p>
+<p>In the figure, each item has four OCCs representing the four response
+options. The response categories are labeled as “P1” to “P4”. For all
+four items, the OCCs follow the same order as the response categories.
+The OCC for the first response option (P1) is on the very left side of
+the plot, whereas the last response option (P4) is located on the right
+side of the plot. There are two questions to ask of OCCs: (1) Are they
+in the correct order? and (2) Does each response category meaningfully
+represent the responses of respondents at a given trait level? In this
+case, the OCCs are in the correct order, but the middle categories do
+not seem to capture distinct respondents.</p>
+<p>One way to evaluate the fit of the Partial Credit Model is to
+evaluate how well it fits the data from the item responses. The
+following table presents this information.</p>
+<p><code>{r} itemplot(results.pcm, 1, type = 'score') empirical_plot(items2, c(1,2,3,4), main = 'Empirical Plots') pcmfit &lt;- as.data.frame(itemfit(results.pcm)) knitr::kable(pcmfit, caption = 'Partial Credit Model (PCM) - Item Fit Statistics') itemfit(results.pcm, empirical.plot=1) itemfit(results.pcm, 'infit')</code></p>
+<p>This model blows.</p>
+</div>
+<div id="generalized-partial-credit-model-gpcm" class="section level4">
+<h4>Generalized Partial Credit Model (GPCM)</h4>
+<p><code>{r} model.gpcm &lt;- 'GPCM = 1-4' results.gpcm &lt;- mirt(data=items, model=model.gpcm, itemtype="gpcm", verbose=FALSE) coef.gpcm &lt;- coef(results.gpcm, IRTpars=TRUE, simplify=TRUE) items.gpcm &lt;- as.data.frame(coef.gpcm$items) print(results.gpcm) #print(items.gpcm) knitr::kable(round(items.gpcm,2), caption = "Generalized Partial Credit Model (GPCM) - Item Parameters")</code></p>
+<p>In the PCM, “the property of ordered threshold parameters is not a
+requirement in the partial credit or genearlized partial credit models”
+<span class="citation">(<a href="#ref-EmbretsonReise2000">Embretson and
+Reise 2000</a>)</span>.</p>
+<p><code>{r} plot(results.gpcm, type = 'trace', which.items = c(1,2,3,4),      main = "", par.settings = simpleTheme(lty=1:4,lwd=2),      auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves</code></p>
+</div>
+<div id="rating-scale-model-rsm" class="section level4">
+<h4>Rating Scale Model (RSM)</h4>
+<p>``{r} model.rsm &lt;- ‘RSM = 1-4’ results.rsm &lt;- mirt(data=items,
+model=model.rsm, itemtype=“rsm”, verbose=FALSE) coef.rsm &lt;-
+coef(results.rsm, simplify=TRUE) items.rsm &lt;-
+as.data.frame(coef.rsm$items) print(summary(results.rsm))
+#print(items.rsm) knitr::kable(round(items.rsm,2), caption = “Rating
+Scale Model (RSM) - Item Parameters”)</p>
+<p>plot(results.rsm, type = ‘trace’, which.items = c(1,2,3,4), main =
+““, par.settings = simpleTheme(lty=1:4,lwd=2),
+auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+plot(results.rsm, type = ‘itemscore’, theta_lim = c(-4,4), lwd=2,
+facet_items = FALSE) # item scoring traceline</p>
+<p>#plot(results.rsm, type = ‘infotrace’, which.items = c(1,2,3,4), #
+main = ““, par.settings = simpleTheme(lwd=2)) # item information
+functions (IIF) #plot(results.rsm, type = ‘info’, theta_lim = c(-4,4),
+lwd=2) # test information curve #plot(results.rsm, type = ‘SE’,
+theta_lim = c(-4,4), lwd=2) # test standard errors ``</p>
+</div>
+<div id="graded-response-model-grm" class="section level4">
+<h4>Graded Response Model (GRM)</h4>
+<p>``{r} model.grm &lt;- ‘GRM = 1-4’ results.grm &lt;- mirt(data=items,
+model=model.grm, itemtype=“graded”, verbose=FALSE) coef.grm &lt;-
+coef(results.grm, simplify=TRUE) items.grm &lt;-
+as.data.frame(coef.grm$items) print(summary(results.grm))
+#print(items.grm) knitr::kable(round(items.grm,2), caption = “Graded
+Response Model (GRM) - Item Parameters”)</p>
+<p>plot(results.grm, type = ‘trace’, which.items = c(1,2,3,4), main =
+““, par.settings = simpleTheme(lty=1:4,lwd=2),
+auto.key=list(points=FALSE,lines=TRUE, columns=4)) # option curves
+plot(results.grm, type = ‘itemscore’, theta_lim = c(-4,4), lwd=2,
+facet_items = FALSE) # item scoring traceline</p>
+<p>#plot(results.rsm, type = ‘infotrace’, which.items = c(1,2,3,4), #
+main = ““, par.settings = simpleTheme(lwd=2)) # item information
+functions (IIF) #plot(results.rsm, type = ‘info’, theta_lim = c(-4,4),
+lwd=2) # test information curve #plot(results.rsm, type = ‘SE’,
+theta_lim = c(-4,4), lwd=2) # test standard errors ``</p>
+<p>In the Graded Response Model, between category threshold parameters
+are ordered.</p>
+</div>
+<div id="trait-scores" class="section level4">
+<h4>Trait scores</h4>
+<p>``{r} # attach factor scores pcmscores &lt;- fscores(results.pcm)
+gpcmscores &lt;- fscores(results.gpcm) rsmscores &lt;-
+fscores(results.rsm) grmscores &lt;- fscores(results.grm) pew &lt;-
+cbind(pew, pcmscores) pew &lt;- cbind(pew, gpcmscores) pew &lt;-
+cbind(pew, rsmscores) pew &lt;- cbind(pew, grmscores) head(items)</p>
+<p>scores &lt;- pew[ ,5:9] corrs2 &lt;- cor(scores, method =
+c(“pearson”)) knitr::kable(round(corrs2,2), caption = “Correlation
+Matrix”) ``</p>
+</div>
+</div>
+<div id="references" class="section level3 unnumbered">
+<h3 class="unnumbered">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+<div id="ref-Brown2006" class="csl-entry">
+Brown, Timothy A. 2006. <em>Confirmatory Factor Analysis for Applied
+Research</em>. The Guilford Press.
+</div>
+<div id="ref-Bulut2020" class="csl-entry">
+Bulut, Okan. 2020. <span>“Estimating Polytomous IRT Models in r.”</span>
+<a
+href="https://rstudio-pubs-static.s3.amazonaws.com/357155_6674780326ef4afba5f009d17a85d4ae.html">https://rstudio-pubs-static.s3.amazonaws.com/357155_6674780326ef4afba5f009d17a85d4ae.html</a>.
+</div>
+<div id="ref-EmbretsonReise2000" class="csl-entry">
+Embretson, Susan E., and Steven P. Reise. 2000. <em>Item Response Theory
+for Psychologists</em>. Lawrence Erlbaum Associates, Inc.
+</div>
+<div id="ref-PewData2014" class="csl-entry">
+The Pew Research Center. 2014. <span>“<span class="nocase">Religious
+Landscape Survey [Data file and code book]</span>.”</span> <a
+href="https://www.pewforum.org/religious-landscape-study/">https://www.pewforum.org/religious-landscape-study/</a>.
+</div>
+<div id="ref-WrightMasters1982" class="csl-entry">
+Wright, Benjamin D., and Geofferey N. Masters. 1982. <em>Rating Scale
+Analysis</em>. Mesa Press.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

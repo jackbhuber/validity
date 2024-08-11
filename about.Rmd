@@ -1,0 +1,9 @@
+---
+title: "About Me"
+---
+
+I'm a sociologist and psychometrician.
+
+My early work was in sociology (BA, Arizona State; MS, Virginia Tech).  My areas of interest was the sociology of religion with particular interest in the work of the late Fr. Andrew Greeley.  My Master's thesis was a study of the political mobilization of the New Christian Right, explored the relationship between religious attitudes and political behavior.  It fit regression models to data from a survey of Evangelicals.
+
+My doctoral work in educational psychology focused on psychometrics.  I immersed myself deeply in validity theory and learned the tools of Classical Test Theory (CTT) and Item Response Theory (IRT).  My dissertation asked what most motivated high school teachers to examine data from their students' scores on the state assessment.  I used IRT to develop reliable measures and fit hierarchical linear models to data from a survey of my design.
