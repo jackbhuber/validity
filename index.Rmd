@@ -40,7 +40,7 @@ The first task is to prepare the data file. I begin by loading the `haven` packa
 
 ``{r}
 library(haven)
-pew <- read_sav("data/pew.sav") # read raw data from file in working directory
+pew <- read_sav("https://github.com/jackbhuber/datasets/pew.sav") # read raw data from file in working directory
 pew <- pew[pew$CHRELTRAD == 10000, ] # select only former Catholics
 pew <- pew[ ,c("qi4a","qi4b","qi4c","qi4d")] # select the four well-being items
 pew$qi4a[pew$qi4a==9] <- NA # code 9 as missing
@@ -142,7 +142,7 @@ knitr::kable(round(corrs,2), caption = "Correlation Matrix") # fancy kable versi
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt ex ut condimentum vulputate. Sed feugiat mattis lectus vitae mollis. Suspendisse sodales urna id pharetra mattis. Mauris feugiat molestie efficitur. Proin non metus hendrerit elit viverra tincidunt. Integer tristique, nunc nec gravida semper, erat ligula placerat nunc, vitae tincidunt diam odio ut est. Morbi sit amet posuere ante, non tempor leo. Nam fermentum mi urna, ut lacinia metus venenatis sit amet. Morbi mattis lectus sit amet magna ultricies malesuada.
 
-`` {r nice-fig, fig.cap='Correlation Matrix of Well-being Items', out.width='80%', fig.asp=.75, fig.align='center'}
+``{r nice-fig, fig.cap='Correlation Matrix of Well-being Items', out.width='80%', fig.asp=.75, fig.align='center'}
 library(corrplot)
 corrplot(cor(items), order = "original", tl.col='black', tl.cex=.75) # visual correlation matrix
 ``

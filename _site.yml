@@ -1,8 +1,8 @@
 name: "validity"
 navbar:
-  title: "Validating the Well-Being Scale"
+  title: "Spiritual Well-Being"
   left:
-    - text: "Home"
+    - text: "Document"
       href: index.html
     #- text: "About Me"
     #  href: about.html
